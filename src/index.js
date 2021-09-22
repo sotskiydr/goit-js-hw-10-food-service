@@ -16,7 +16,6 @@ toggleBtn.addEventListener('change' , onToggleBtnClick);
 
 if (localStorage.getItem('theme') === null || localStorage.getItem('theme') === Theme.LIGHT) {
   bodyRef.classList.add(Theme.LIGHT);
-  console.log('work')
 }
 
 if(localStorage.getItem('theme') === Theme.DARK){
