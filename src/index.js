@@ -12,13 +12,18 @@ const Theme = {
 
 const bodyRef = document.querySelector('body');
 const toggleBtn = document.querySelector('input');
-toggleBtn.addEventListener('change' , onToggleBtnClick)
+toggleBtn.addEventListener('change' , onToggleBtnClick);
+
+if (localStorage.getItem('theme') === null || localStorage.getItem('theme') === Theme.LIGHT) {
+  bodyRef.classList.add(Theme.LIGHT);
+  console.log('work')
+}
 
 if(localStorage.getItem('theme') === Theme.DARK){
   toggleBtn.setAttribute('checked','checked');
-  bodyRef.classList.add(Theme.DARK)
+  bodyRef.classList.add(Theme.DARK);
 }else{
-  bodyRef.classList.remove(Theme.DARK)
+  bodyRef.classList.remove(Theme.DARK);
   toggleBtn.removeAttribute('checked');
 }
 
@@ -27,8 +32,10 @@ function onToggleBtnClick(evt){
   if(evt.target.checked){
     bodyRef.classList.add(Theme.DARK)
     localStorage.setItem('theme' , Theme.DARK)
+    bodyRef.classList.remove(Theme.LIGHT);
   }else{
-    bodyRef.classList.remove(Theme.DARK)
     localStorage.setItem('theme' , Theme.LIGHT)
+    bodyRef.classList.add(Theme.LIGHT)
+    bodyRef.classList.remove(Theme.DARK)
   }
 }
